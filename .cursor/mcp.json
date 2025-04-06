@@ -23,16 +23,15 @@
       ]
     },
     "vercel-ai-sdk-mcp": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "dist/index.js"
-      ],
-      "env": {
-        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
-        "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
-        "TRANSPORT_TYPE": "${TRANSPORT_TYPE}",
-        "PORT": "${PORT}"
-      }
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "chiziuwaga/vercel-ai-sdk-mcp-project",
+        "--config",
+        "{\"openaiApiKey\":\"${OPENAI_API_KEY}\", \"anthropicApiKey\":\"${ANTHROPIC_API_KEY}\", \"figmaApiKey\":\"${FIGMA_API_KEY}\", \"twentyFirstApiKey\":\"${TWENTY_FIRST_API_KEY}\", \"transportType\":\"stdio\"}"
+      ]
     }
   }
 } 
