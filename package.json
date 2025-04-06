@@ -1,0 +1,32 @@
+{
+  "name": "vercel-ai-sdk-mcp-project",
+  "version": "1.0.0",
+  "description": "MCP Server for Vercel AI SDK with Figma and magic-mcp integration",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc -w & node --watch dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "vercel",
+    "ai",
+    "figma",
+    "magic-mcp"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ai-sdk/openai": "^0.0.33",
+    "@modelcontextprotocol/sdk": "^0.1.0", 
+    "ai": "^3.2.16",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2"
+  }
+} 
