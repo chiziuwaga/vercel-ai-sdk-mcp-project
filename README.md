@@ -1,5 +1,7 @@
 # Vercel AI SDK MCP Server Project
 
+[![smithery badge](https://smithery.ai/badge/@chiziuwaga/vercel-ai-sdk-mcp-project)](https://smithery.ai/server/@chiziuwaga/vercel-ai-sdk-mcp-project)
+
 This repository contains a Model Context Protocol (MCP) server designed to expose capabilities of the Vercel AI SDK Core to AI development environments like Cursor. It allows leveraging features like `generateObject`, `generateText`, `streamText`, and UI generation alongside other MCP servers (like `mcp-figma` and `magic-mcp` via Smithery).
 
 ## Core Features

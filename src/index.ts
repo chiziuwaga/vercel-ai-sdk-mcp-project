@@ -11,6 +11,16 @@ import { registerFigmaIntegration } from "./integrations/figma/index.js"; // Use
 import { registerMagicMcpBridge } from "./integrations/magicMcp/index.js"; // Uses placeholder
 import { registerCrossIntegrationTools } from "./integrations/crossIntegration.js"; // Uses placeholder connectors
 
+// *** ADD THIS CHECK ***
+if (!config.openaiApiKey) {
+  console.error("\n!!! FATAL ERROR !!!");
+  console.error("Missing required environment variable: OPENAI_API_KEY");
+  console.error("Please ensure OPENAI_API_KEY is set in your environment (for local runs)");
+  console.error("or provided during Smithery deployment configuration.");
+  process.exit(1); // Exit immediately if key is missing
+}
+// *********************
+
 // Create server instance
 const server = new McpServer({
   name: "vercel-ai-sdk-mcp-project", // Match package.json name
