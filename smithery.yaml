@@ -1,0 +1,53 @@
+name: vercel-ai-sdk-mcp-project
+version: 1.0.0
+description: MCP Server for Vercel AI SDK with Figma and magic-mcp integration (using placeholders)
+
+# Defines how to start the command within the Docker container
+startCommand:
+  type: stdio # Default, change to sse if needed
+  # Defines configuration parameters users can set when running via Smithery
+  configSchema:
+    type: object
+    required:
+      - openaiApiKey
+      # Add figmaApiKey and twentyFirstApiKey if you implement those connectors
+      # - figmaApiKey 
+      # - twentyFirstApiKey 
+    properties:
+      openaiApiKey:
+        type: string
+        description: "Your OpenAI API Key"
+      anthropicApiKey:
+        type: string
+        description: "Your Anthropic API Key (Optional)"
+      figmaApiKey:
+        type: string
+        description: "Your Figma API Key (Required for Figma tools)"
+      twentyFirstApiKey:
+        type: string
+        description: "Your 21st Dev API Key (Required for Magic MCP tools)"
+      transportType: # Allow configuring transport via Smithery if needed
+        type: string
+        enum: ["stdio", "sse"]
+        default: "stdio"
+        description: "Transport protocol (stdio for local/Cursor, sse for web)"
+      port:
+        type: number
+        default: 3000
+        description: "Port number if using SSE transport"
+
+  # Dynamically creates the command based on the config 
+  commandFunction: |
+    (config) => ({
+      command: 'node',
+      args: ['dist/index.js'],
+      # Pass necessary API keys and config from Smithery runner to the container
+      env: {
+        OPENAI_API_KEY: config.openaiApiKey,
+        ANTHROPIC_API_KEY: config.anthropicApiKey || "",
+        FIGMA_API_KEY: config.figmaApiKey || "", 
+        TWENTY_FIRST_API_KEY: config.twentyFirstApiKey || "",
+        TRANSPORT_TYPE: config.transportType || "stdio",
+        PORT: (config.port || 3000).toString()
+      }
+    }) 
